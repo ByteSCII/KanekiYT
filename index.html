@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaneki - Configuraciones Profesionales Minecraft</title>
+    <title>Kaneki - Configuraciones de Plugins Minecraft Gratuitas</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ESTILOS MODERNOS CON TUS COLORES */
@@ -35,9 +35,10 @@
             flex-direction: column;
         }
 
-        /* HERO SECTION INTEGRADA CON HEADER */
+        /* HERO SECTION CON FONDO PERSONALIZADO */
         .hero-section {
-            background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
+            background: linear-gradient(rgba(10, 26, 47, 0.85), rgba(30, 42, 58, 0.9)), 
+                        url('./images/fondo.png') no-repeat center center/cover;
             min-height: 100vh;
             position: relative;
             padding: 0;
@@ -52,8 +53,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.15) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%);
         }
 
         /* HEADER SIMPLIFICADO */
@@ -140,7 +141,7 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
@@ -273,7 +274,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
             }
 
             .hero-content p {
@@ -322,7 +323,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .auth-button {
@@ -344,10 +345,17 @@
                 padding: 1.5rem;
             }
         }
+
+        /* Fallback si la imagen no carga */
+        .hero-section {
+            background: linear-gradient(rgba(10, 26, 47, 0.9), rgba(30, 42, 58, 0.95)), 
+                        url('./images/fondo.png') no-repeat center center/cover,
+                        linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
+        }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION INTEGRADA CON HEADER -->
+    <!-- HERO SECTION CON FONDO PERSONALIZADO -->
     <section class="hero-section" id="inicio">
         <!-- HEADER SIMPLIFICADO -->
         <div class="header-container">
@@ -366,8 +374,8 @@
 
         <!-- CONTENIDO PRINCIPAL -->
         <div class="hero-content">
-            <h1>Configuraciones Profesionales Minecraft</h1>
-            <p>Accede a configuraciones optimizadas, tutoriales exclusivos y únete a la comunidad de administradores más activa</p>
+            <h1>Configuraciones de Plugins de Minecraft Gratuitas</h1>
+            <p>Accede a configuraciones optimizadas, tutoriales exclusivos y únete a la comunidad de administradores más activa. Todo completamente gratis.</p>
             <div class="hero-buttons">
                 <a href="descargas.html" class="btn btn-primary">Acceder a Descargas</a>
                 <a href="tutoriales.html" class="btn btn-secondary">Ver Tutoriales</a>
@@ -410,7 +418,7 @@
             });
         });
 
-        // Manejo de logo si no carga
+        // Manejo de imágenes si no cargan
         document.addEventListener('DOMContentLoaded', function() {
             const logos = document.querySelectorAll('img[src*="logo.png"]');
             logos.forEach(logo => {
@@ -418,6 +426,14 @@
                     this.style.display = 'none';
                 });
             });
+
+            // Verificar si el fondo carga correctamente
+            const heroSection = document.querySelector('.hero-section');
+            const fondoImg = new Image();
+            fondoImg.src = './images/fondo.png';
+            fondoImg.onerror = function() {
+                heroSection.style.background = 'linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%)';
+            };
         });
     </script>
 </body>
