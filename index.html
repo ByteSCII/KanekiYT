@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MinecraftConfigs - Configuraciones Profesionales</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS GENERALES */
+        /* ESTILOS MODERNOS */
+        :root {
+            --primary: #00dc82;
+            --primary-dark: #00b369;
+            --dark: #0f0f0f;
+            --dark-light: #1a1a1a;
+            --gray: #2a2a2a;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,25 +24,23 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--text);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .minecraft-font {
-            font-family: 'Courier New', monospace;
-        }
-
-        /* HEADER */
+        /* HEADER COMPACTO */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 3px solid #00ff00;
+            border-bottom: 1px solid var(--gray);
         }
 
         .nav-container {
@@ -44,13 +53,12 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00ff00;
-        }
-
-        .logo span {
-            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         nav ul {
@@ -60,14 +68,15 @@
         }
 
         nav a {
-            color: #ffffff;
+            color: var(--text);
             text-decoration: none;
-            transition: color 0.3s;
             font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #00ff00;
+            color: var(--primary);
         }
 
         .auth-buttons {
@@ -76,11 +85,12 @@
         }
 
         .btn {
-            padding: 0.5rem 1.5rem;
+            padding: 0.6rem 1.5rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
@@ -88,33 +98,35 @@
 
         .btn-login {
             background: transparent;
-            color: #00ff00;
-            border: 2px solid #00ff00;
+            color: var(--primary);
+            border: 1.5px solid var(--gray);
         }
 
         .btn-login:hover {
-            background: #00ff00;
-            color: #000000;
+            border-color: var(--primary);
+            background: rgba(0, 220, 130, 0.1);
         }
 
         .btn-register {
-            background: #00ff00;
-            color: #000000;
+            background: var(--primary);
+            color: var(--dark);
         }
 
         .btn-register:hover {
-            background: #00cc00;
+            background: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION COMPACTO */
         .hero {
-            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center center/cover;
-            height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 8rem 2rem 4rem;
             position: relative;
         }
 
@@ -125,26 +137,32 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 220, 130, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 220, 130, 0.05) 0%, transparent 50%);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 800px;
-            padding: 0 2rem;
+            max-width: 600px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #00ff00;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, #00b3ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            color: #cccccc;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-light);
+            font-weight: 400;
         }
 
         .hero-buttons {
@@ -155,35 +173,39 @@
         }
 
         .btn-primary {
-            background: #00ff00;
-            color: #000000;
+            background: var(--primary);
+            color: var(--dark);
             padding: 1rem 2rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #00ff00;
-            border: 2px solid #00ff00;
+            color: var(--text);
+            border: 1.5px solid var(--gray);
             padding: 1rem 2rem;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         .btn-primary:hover {
-            background: #00cc00;
-            transform: translateY(-3px);
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.4);
         }
 
         .btn-secondary:hover {
-            background: #00ff00;
-            color: #000000;
-            transform: translateY(-3px);
+            border-color: var(--primary);
+            background: rgba(0, 220, 130, 0.1);
+            transform: translateY(-2px);
         }
 
-        /* FEATURES SECTION */
+        /* FEATURES SECTION MODERNO */
         .features {
-            padding: 5rem 2rem;
-            background: #1a1a1a;
+            padding: 4rem 2rem;
+            background: var(--dark-light);
         }
 
         .features-container {
@@ -197,55 +219,84 @@
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
-            color: #00ff00;
+            font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            color: var(--text);
         }
 
         .section-title p {
-            color: #cccccc;
-            font-size: 1.1rem;
+            color: var(--text-light);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .feature-card {
-            background: #2d2d2d;
+            background: var(--dark);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid #333;
-            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid var(--gray);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: #00ff00;
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            background: rgba(0, 220, 130, 0.1);
+            border-radius: 12px;
         }
 
         .feature-card h3 {
-            color: #00ff00;
+            color: var(--text);
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .feature-card p {
-            color: #cccccc;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        /* REQUIREMENTS SECTION */
+        /* REQUIREMENTS SECTION COMPACTO */
         .requirements {
-            padding: 5rem 2rem;
-            background: #2d2d2d;
+            padding: 4rem 2rem;
+            background: var(--dark);
         }
 
         .requirements-container {
@@ -255,45 +306,74 @@
         }
 
         .steps {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
             margin-top: 3rem;
-            flex-wrap: wrap;
         }
 
         .step {
-            background: #1a1a1a;
+            background: var(--dark-light);
             padding: 2rem;
-            border-radius: 10px;
-            min-width: 200px;
-            border: 2px solid #00ff00;
+            border-radius: 12px;
+            border: 1px solid var(--gray);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
         }
 
         .step-number {
-            background: #00ff00;
-            color: #000000;
+            background: var(--primary);
+            color: var(--dark);
             width: 40px;
             height: 40px;
-            border-radius: 50%;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem auto;
-            font-weight: bold;
+            margin: 0 auto 1.5rem auto;
+            font-weight: 700;
+            font-size: 1.1rem;
         }
 
-        /* FOOTER */
+        .step h3 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .step p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* FOOTER MODERNO */
         footer {
-            background: #000000;
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 3px solid #00ff00;
+            background: var(--dark-light);
+            padding: 3rem 2rem 2rem;
+            border-top: 1px solid var(--gray);
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .footer-links {
@@ -305,37 +385,49 @@
         }
 
         .footer-links a {
-            color: #cccccc;
+            color: var(--text-light);
             text-decoration: none;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
         .footer-links a:hover {
-            color: #00ff00;
+            color: var(--primary);
         }
 
         .copyright {
-            color: #666;
+            color: var(--text-light);
             margin-top: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
         }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE MEJORADO */
         @media (max-width: 768px) {
             .nav-container {
-                flex-direction: column;
+                padding: 0 1rem;
+                flex-wrap: wrap;
                 gap: 1rem;
             }
 
             nav ul {
                 gap: 1rem;
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+                min-height: 60vh;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .hero-buttons {
@@ -347,14 +439,44 @@
                 width: 200px;
                 text-align: center;
             }
+
+            .features, .requirements {
+                padding: 3rem 1rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                order: 0;
+            }
+
+            .auth-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
+    <!-- HEADER MODERNO -->
     <header>
         <div class="nav-container">
-            <div class="logo minecraft-font">🎮 <span>MinecraftConfigs</span></div>
+            <div class="logo">
+                <span>⚡</span>
+                MinecraftConfigs
+            </div>
             <nav>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
@@ -371,79 +493,82 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION COMPACTO -->
     <section class="hero" id="inicio">
         <div class="hero-content">
-            <h1 class="minecraft-font">CONFIGURACIONES PROFESIONALES</h1>
-            <p>Accede a configuraciones exclusivas de plugins, tutoriales paso a paso y únete a nuestra comunidad de servidores Minecraft</p>
+            <h1>Configuraciones Profesionales para Minecraft</h1>
+            <p>Accede a configuraciones optimizadas, tutoriales exclusivos y únete a una comunidad de administradores profesionales</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">OBTENER ACCESO</a>
-                <a href="tutoriales.html" class="btn btn-secondary">VER TUTORIALES</a>
+                <a href="#" class="btn btn-primary">Comenzar Ahora</a>
+                <a href="tutoriales.html" class="btn btn-secondary">Ver Tutoriales</a>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
+    <!-- FEATURES SECTION MODERNO -->
     <section class="features">
         <div class="features-container">
             <div class="section-title">
-                <h2>¿Qué Ofrecemos?</h2>
-                <p>Todo lo que necesitas para tu servidor Minecraft en un solo lugar</p>
+                <h2>Todo lo que necesitas</h2>
+                <p>Herramientas profesionales para llevar tu servidor al siguiente nivel</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-icon">🚀</div>
                     <h3>Configuraciones Optimizadas</h3>
-                    <p>Archivos YML y JSON listos para usar, probados y optimizados para máximo rendimiento</p>
+                    <p>Archivos YML y JSON listos para implementar, probados en servidores de alto rendimiento</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Tutoriales Detallados</h3>
-                    <p>Guías paso a paso desde instalación básica hasta configuración avanzada de plugins</p>
+                    <div class="feature-icon">🎓</div>
+                    <h3>Tutoriales Paso a Paso</h3>
+                    <p>Desde configuración básica hasta técnicas avanzadas de optimización y seguridad</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">👥</div>
+                    <div class="feature-icon">💬</div>
                     <h3>Comunidad Activa</h3>
-                    <p>Foro donde puedes resolver dudas, compartir experiencias y conectar con otros administradores</p>
+                    <p>Comparte experiencias y resuelve problemas con otros administradores de servidores</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- REQUIREMENTS SECTION -->
+    <!-- REQUIREMENTS SECTION COMPACTO -->
     <section class="requirements">
         <div class="requirements-container">
             <div class="section-title">
-                <h2>¿Cómo Acceder?</h2>
-                <p>Solo necesitas cumplir estos dos requisitos simples</p>
+                <h2>Acceso Inmediato</h2>
+                <p>Dos simples pasos para desbloquear todo el contenido</p>
             </div>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Registro en el Sitio</h3>
-                    <p>Crea tu cuenta gratuita en nuestra plataforma</p>
+                    <h3>Registro Gratuito</h3>
+                    <p>Crea tu cuenta en 30 segundos</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Suscripción a YouTube</h3>
-                    <p>Suscríbete a nuestro canal para acceder a todo el contenido</p>
+                    <h3>Suscripción YouTube</h3>
+                    <p>Suscríbete a nuestro canal de tutoriales</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER MODERNO -->
     <footer>
         <div class="footer-content">
-            <div class="logo minecraft-font">🎮 <span>MinecraftConfigs</span></div>
+            <div class="footer-logo">
+                <span>⚡</span>
+                MinecraftConfigs
+            </div>
             <div class="footer-links">
                 <a href="#inicio">Inicio</a>
                 <a href="descargas.html">Descargas</a>
                 <a href="tutoriales.html">Tutoriales</a>
                 <a href="foro.html">Foro</a>
                 <a href="contacto.html">Contacto</a>
-                <a href="#">Política de Privacidad</a>
-                <a href="#">Términos de Servicio</a>
+                <a href="#">Privacidad</a>
+                <a href="#">Términos</a>
             </div>
             <div class="copyright">
                 &copy; 2024 MinecraftConfigs. Todos los derechos reservados.
@@ -452,7 +577,7 @@
     </footer>
 
     <script>
-        // Smooth scroll para los enlaces
+        // Efectos de scroll suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -466,22 +591,28 @@
             });
         });
 
-        // Efecto de escritura en el título
-        const title = document.querySelector('.hero h1');
-        const text = title.textContent;
-        title.textContent = '';
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < text.length) {
-                title.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        // Iniciar efecto cuando la página cargue
-        window.addEventListener('load', typeWriter);
+        // Efecto de aparición en scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar a las cards
+        document.querySelectorAll('.feature-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
