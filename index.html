@@ -36,26 +36,50 @@
             flex-direction: column;
         }
 
-        /* HERO SECTION CON FONDO PERSONALIZADO */
+        /* HERO SECTION CON VIDEO DE FONDO */
         .hero-section {
-            background: linear-gradient(rgba(10, 26, 47, 0.85), rgba(30, 42, 58, 0.9)), 
-                        url('./images/fondo.jpg') no-repeat center center/cover;
             min-height: 100vh;
             position: relative;
             padding: 0;
             flex: 1;
+            overflow: hidden;
         }
 
-        .hero-section::before {
-            content: '';
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            /* Hacer el video más lento */
+            animation: slow-motion 20s linear infinite;
+            filter: brightness(0.7);
+        }
+
+        @keyframes slow-motion {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%);
+            background: linear-gradient(rgba(10, 26, 47, 0.85), rgba(30, 42, 58, 0.9));
+            z-index: 0;
         }
 
         /* HEADER SIMPLIFICADO */
@@ -308,6 +332,22 @@
             .footer-links {
                 gap: 1.5rem;
             }
+
+            .video-background {
+                animation: slow-motion-mobile 25s linear infinite;
+            }
+        }
+
+        @keyframes slow-motion-mobile {
+            0% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         @media (max-width: 480px) {
@@ -346,18 +386,21 @@
                 padding: 1.5rem;
             }
         }
-
-        /* Fallback si la imagen no carga */
-        .hero-section {
-            background: linear-gradient(rgba(10, 26, 47, 0.9), rgba(30, 42, 58, 0.95)), 
-                        url('./images/fondo.jpg') no-repeat center center/cover,
-                        linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
-        }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION CON FONDO PERSONALIZADO -->
+    <!-- HERO SECTION CON VIDEO DE FONDO -->
     <section class="hero-section" id="inicio">
+        <!-- VIDEO DE FONDO -->
+        <video class="video-background" autoplay muted loop playsinline>
+            <source src="./videos/fondo.mp4" type="video/mp4">
+            <source src="./videos/fondo.webm" type="video/webm">
+            <!-- Fallback si el video no carga -->
+        </video>
+        
+        <!-- OVERLAY PARA MEJOR LEGIBILIDAD -->
+        <div class="video-overlay"></div>
+
         <!-- HEADER SIMPLIFICADO -->
         <div class="header-container">
             <div class="nav-container">
@@ -419,23 +462,52 @@
             });
         });
 
-        // Manejo de imágenes si no cargan
+        // Control del video para hacerlo más lento
         document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            
+            if (video) {
+                // Hacer el video más lento (0.5x velocidad)
+                video.playbackRate = 0.5;
+                
+                // Manejar errores del video
+                video.addEventListener('error', function() {
+                    console.log('Error cargando el video, usando fallback...');
+                    // Podrías añadir un fondo estático aquí como fallback
+                    document.querySelector('.video-overlay').style.background = 'linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%)';
+                });
+                
+                // Asegurar que el video se reproduzca
+                video.play().catch(function(error) {
+                    console.log('Auto-play bloqueado:', error);
+                });
+            }
+
+            // Manejo de logos si no cargan
             const logos = document.querySelectorAll('img[src*="logo.png"]');
             logos.forEach(logo => {
                 logo.addEventListener('error', function() {
                     this.style.display = 'none';
                 });
             });
-
-            // Verificar si el fondo carga correctamente
-            const heroSection = document.querySelector('.hero-section');
-            const fondoImg = new Image();
-            fondoImg.src = './images/fondo.jpg';
-            fondoImg.onerror = function() {
-                heroSection.style.background = 'linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%)';
-            };
         });
+
+        // Política de reproducción automática mejorada
+        function enableAutoplay() {
+            const video = document.querySelector('.video-background');
+            if (video) {
+                video.muted = true;
+                video.play().then(() => {
+                    console.log('Video reproduciéndose');
+                }).catch(error => {
+                    console.log('Error en reproducción automática:', error);
+                });
+            }
+        }
+
+        // Intentar reproducir cuando el usuario interactúe
+        document.addEventListener('click', enableAutoplay);
+        document.addEventListener('scroll', enableAutoplay);
     </script>
 </body>
 </html>
