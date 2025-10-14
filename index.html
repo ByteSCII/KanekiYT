@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MinecraftConfigs - Configuraciones Profesionales</title>
+    <title>Kaneki - Configuraciones Profesionales Minecraft</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ESTILOS MODERNOS CON TUS COLORES */
@@ -32,16 +32,34 @@
             overflow-x: hidden;
         }
 
-        /* HEADER CON TUS COLORES */
-        header {
-            background: rgba(10, 26, 47, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 0.8rem 0;
-            position: fixed;
-            width: 100%;
+        /* HEADER INTEGRADO CON HERO */
+        .hero-section {
+            background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
+            min-height: 100vh;
+            position: relative;
+            padding: 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.15) 0%, transparent 50%);
+        }
+
+        /* HEADER SIMPLIFICADO */
+        .header-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
-            border-bottom: 1px solid var(--gray);
+            padding: 1.5rem 2rem;
         }
 
         .nav-container {
@@ -50,20 +68,20 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 1rem;
             text-decoration: none;
         }
 
         .logo-img {
-            height: 40px;
+            height: 80px; /* Logo mucho más grande */
             width: auto;
             transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .logo-img:hover {
@@ -71,137 +89,74 @@
         }
 
         .logo-text {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 2rem; /* Texto más grande */
+            font-weight: 800;
             background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
+        /* BOTÓN INGRESAR EN ESQUINA */
+        .auth-button {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), var(--sky-blue));
-            transition: width 0.3s ease;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1001;
         }
 
-        nav a:hover {
-            color: var(--sky-blue);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn {
-            padding: 0.6rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-login {
-            background: transparent;
-            color: var(--sky-blue);
-            border: 1.5px solid var(--gray);
-        }
-
-        .btn-login:hover {
-            border-color: var(--sky-blue);
-            background: rgba(135, 206, 235, 0.1);
-        }
-
-        .btn-register {
+        .btn-ingresar {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: var(--night-blue);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
             font-weight: 700;
-        }
-
-        .btn-register:hover {
-            transform: translateY(-2px);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
-        /* HERO SECTION CON GRADIENTE DORADO-AZUL */
-        .hero {
-            background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
+        .btn-ingresar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%);
-        }
-
+        /* CONTENIDO HERO CENTRADO */
         .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.2;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
             color: var(--text-light);
             font-weight: 400;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -209,35 +164,41 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: var(--night-blue);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--text);
-            border: 1.5px solid var(--gray);
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 500;
+            border: 2px solid var(--sky-blue);
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
         }
 
         .btn-secondary:hover {
-            border-color: var(--sky-blue);
             background: rgba(135, 206, 235, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(135, 206, 235, 0.3);
         }
 
         /* FEATURES SECTION */
         .features {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             background: var(--dark-blue);
         }
 
@@ -248,11 +209,11 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             color: var(--text);
@@ -260,21 +221,21 @@
 
         .section-title p {
             color: var(--text-light);
-            font-size: 1rem;
+            font-size: 1.1rem;
             max-width: 500px;
             margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
             background: var(--night-blue);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 15px;
             text-align: center;
             border: 1px solid var(--gray);
             transition: all 0.3s ease;
@@ -288,16 +249,16 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--gold), var(--sky-blue));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--sky-blue);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         .feature-card:hover::before {
@@ -305,30 +266,30 @@
         }
 
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1.5rem;
             display: inline-block;
-            padding: 1rem;
+            padding: 1.5rem;
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 206, 235, 0.1));
-            border-radius: 12px;
+            border-radius: 15px;
         }
 
         .feature-card h3 {
             color: var(--text);
             margin-bottom: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 600;
         }
 
         .feature-card p {
             color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* REQUIREMENTS SECTION */
         .requirements {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             background: var(--night-blue);
         }
 
@@ -340,15 +301,15 @@
 
         .steps {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
         .step {
             background: var(--dark-blue);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 15px;
             border: 1px solid var(--gray);
             transition: all 0.3s ease;
             position: relative;
@@ -356,39 +317,40 @@
 
         .step:hover {
             border-color: var(--gold);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .step-number {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
             color: var(--night-blue);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem auto;
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 800;
+            font-size: 1.3rem;
         }
 
         .step h3 {
             color: var(--text);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 600;
         }
 
         .step p {
             color: var(--text-light);
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         /* FOOTER */
         footer {
             background: var(--dark-blue);
-            padding: 3rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
             border-top: 1px solid var(--gray);
         }
 
@@ -402,18 +364,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 1rem;
             margin-bottom: 2rem;
         }
 
         .footer-logo-img {
-            height: 35px;
+            height: 60px;
             width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
         }
 
         .footer-logo-text {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -430,8 +393,9 @@
         .footer-links a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: color 0.3s;
+            font-weight: 500;
         }
 
         .footer-links a:hover {
@@ -441,40 +405,31 @@
         .copyright {
             color: var(--text-light);
             margin-top: 2rem;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             opacity: 0.7;
         }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-container {
-                padding: 0 1rem;
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-                order: 3;
-                width: 100%;
-                justify-content: center;
+            .logo-img {
+                height: 60px;
             }
 
             .logo-text {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
             }
 
-            .hero {
-                padding: 6rem 1rem 3rem;
-                min-height: 60vh;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero-content p {
+                font-size: 1.1rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .btn-ingresar {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
             }
 
             .hero-buttons {
@@ -482,8 +437,8 @@
                 align-items: center;
             }
 
-            .btn {
-                width: 200px;
+            .btn-primary, .btn-secondary {
+                width: 250px;
                 text-align: center;
             }
 
@@ -491,66 +446,68 @@
                 padding: 3rem 1rem;
             }
 
-            .footer-links {
-                gap: 1rem;
+            .footer-logo-img {
+                height: 50px;
+            }
+
+            .footer-logo-text {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-container {
-                flex-direction: column;
+            .header-container {
+                padding: 1rem;
             }
 
-            nav ul {
-                order: 0;
-            }
-
-            .auth-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
+            .logo-img {
+                height: 50px;
             }
 
             .logo-text {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .auth-button {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            .btn-ingresar {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER CON LOGO -->
-    <header>
-        <div class="nav-container">
-            <a href="#inicio" class="logo-container">
-                <img src="./images/logo.png" alt="MinecraftConfigs" class="logo-img" onerror="this.style.display='none'">
-                <div class="logo-text">MinecraftConfigs</div>
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="descargas.html">Descargas</a></li>
-                    <li><a href="tutoriales.html">Tutoriales</a></li>
-                    <li><a href="foro.html">Foro</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="#" class="btn btn-login">Iniciar Sesión</a>
-                <a href="#" class="btn btn-register">Registrarse</a>
+    <!-- HERO SECTION INTEGRADA CON HEADER -->
+    <section class="hero-section" id="inicio">
+        <!-- HEADER SIMPLIFICADO -->
+        <div class="header-container">
+            <div class="nav-container">
+                <a href="#inicio" class="logo-container">
+                    <img src="./images/logo.png" alt="Kaneki" class="logo-img" onerror="this.style.display='none'">
+                    <div class="logo-text">Kaneki</div>
+                </a>
             </div>
         </div>
-    </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="inicio">
+        <!-- BOTÓN INGRESAR EN ESQUINA -->
+        <div class="auth-button">
+            <a href="#" class="btn-ingresar">Ingresar</a>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
         <div class="hero-content">
-            <h1>Configuraciones Profesionales para Minecraft</h1>
-            <p>Accede a configuraciones optimizadas, tutoriales exclusivos y únete a una comunidad de administradores profesionales</p>
+            <h1>Configuraciones Profesionales Minecraft</h1>
+            <p>Accede a configuraciones optimizadas, tutoriales exclusivos y únete a la comunidad de administradores más activa</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">Comenzar Ahora</a>
+                <a href="descargas.html" class="btn btn-primary">Acceder a Descargas</a>
                 <a href="tutoriales.html" class="btn btn-secondary">Ver Tutoriales</a>
             </div>
         </div>
@@ -567,17 +524,17 @@
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
                     <h3>Configuraciones Optimizadas</h3>
-                    <p>Archivos YML y JSON listos para implementar, probados en servidores de alto rendimiento</p>
+                    <p>Archivos YML y JSON listos para implementar, probados en servidores de alto rendimiento con las mejores prácticas</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🎓</div>
                     <h3>Tutoriales Paso a Paso</h3>
-                    <p>Desde configuración básica hasta técnicas avanzadas de optimización y seguridad</p>
+                    <p>Desde configuración básica hasta técnicas avanzadas de optimización, seguridad y personalización</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
                     <h3>Comunidad Activa</h3>
-                    <p>Comparte experiencias y resuelve problemas con otros administradores de servidores</p>
+                    <p>Comparte experiencias, resuelve problemas y conecta con otros administradores de servidores</p>
                 </div>
             </div>
         </div>
@@ -594,12 +551,12 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Registro Gratuito</h3>
-                    <p>Crea tu cuenta en 30 segundos</p>
+                    <p>Crea tu cuenta en menos de 30 segundos y accede al contenido básico</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3>Suscripción YouTube</h3>
-                    <p>Suscríbete a nuestro canal de tutoriales</p>
+                    <p>Suscríbete a nuestro canal para desbloquear todo el contenido premium</p>
                 </div>
             </div>
         </div>
@@ -609,8 +566,8 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="./images/logo.png" alt="MinecraftConfigs" class="footer-logo-img" onerror="this.style.display='none'">
-                <div class="footer-logo-text">MinecraftConfigs</div>
+                <img src="./images/logo.png" alt="Kaneki" class="footer-logo-img" onerror="this.style.display='none'">
+                <div class="footer-logo-text">Kaneki</div>
             </div>
             <div class="footer-links">
                 <a href="#inicio">Inicio</a>
@@ -622,7 +579,7 @@
                 <a href="#">Términos</a>
             </div>
             <div class="copyright">
-                &copy; 2024 MinecraftConfigs. Todos los derechos reservados.
+                &copy; 2024 Kaneki. Todos los derechos reservados.
             </div>
         </div>
     </footer>
@@ -671,11 +628,6 @@
             logos.forEach(logo => {
                 logo.addEventListener('error', function() {
                     this.style.display = 'none';
-                    // Mostrar texto alternativo si el logo no carga
-                    const parent = this.parentElement;
-                    if (parent.querySelector('.logo-text') || parent.querySelector('.footer-logo-text')) {
-                        parent.style.justifyContent = 'center';
-                    }
                 });
             });
         });
