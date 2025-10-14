@@ -6,15 +6,16 @@
     <title>MinecraftConfigs - Configuraciones Profesionales</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ESTILOS MODERNOS */
+        /* ESTILOS MODERNOS CON TUS COLORES */
         :root {
-            --primary: #00dc82;
-            --primary-dark: #00b369;
-            --dark: #0f0f0f;
-            --dark-light: #1a1a1a;
-            --gray: #2a2a2a;
-            --text: #e0e0e0;
-            --text-light: #a0a0a0;
+            --gold: #FFD700;
+            --gold-dark: #D4AF37;
+            --sky-blue: #87CEEB;
+            --night-blue: #0A1A2F;
+            --dark-blue: #1E2A3A;
+            --gray: #2A3B4C;
+            --text: #E8F4F8;
+            --text-light: #B0C4D4;
         }
 
         * {
@@ -25,17 +26,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--dark);
+            background: var(--night-blue);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* HEADER COMPACTO */
+        /* HEADER CON TUS COLORES */
         header {
-            background: rgba(15, 15, 15, 0.95);
+            background: rgba(10, 26, 47, 0.95);
             backdrop-filter: blur(10px);
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -52,13 +53,29 @@
             padding: 0 2rem;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         nav ul {
@@ -72,11 +89,28 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.9rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--sky-blue));
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: var(--primary);
+            color: var(--sky-blue);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         .auth-buttons {
@@ -98,29 +132,29 @@
 
         .btn-login {
             background: transparent;
-            color: var(--primary);
+            color: var(--sky-blue);
             border: 1.5px solid var(--gray);
         }
 
         .btn-login:hover {
-            border-color: var(--primary);
-            background: rgba(0, 220, 130, 0.1);
+            border-color: var(--sky-blue);
+            background: rgba(135, 206, 235, 0.1);
         }
 
         .btn-register {
-            background: var(--primary);
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--night-blue);
+            font-weight: 700;
         }
 
         .btn-register:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 220, 130, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
         }
 
-        /* HERO SECTION COMPACTO */
+        /* HERO SECTION CON GRADIENTE DORADO-AZUL */
         .hero {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+            background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
             min-height: 70vh;
             display: flex;
             align-items: center;
@@ -138,8 +172,8 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 220, 130, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 220, 130, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(135, 206, 235, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
@@ -152,7 +186,7 @@
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, #00b3ff 100%);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
@@ -173,12 +207,12 @@
         }
 
         .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--night-blue);
             padding: 1rem 2rem;
             font-size: 1rem;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0, 220, 130, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
 
         .btn-secondary {
@@ -191,21 +225,20 @@
         }
 
         .btn-primary:hover {
-            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 220, 130, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
 
         .btn-secondary:hover {
-            border-color: var(--primary);
-            background: rgba(0, 220, 130, 0.1);
+            border-color: var(--sky-blue);
+            background: rgba(135, 206, 235, 0.1);
             transform: translateY(-2px);
         }
 
-        /* FEATURES SECTION MODERNO */
+        /* FEATURES SECTION */
         .features {
             padding: 4rem 2rem;
-            background: var(--dark-light);
+            background: var(--dark-blue);
         }
 
         .features-container {
@@ -239,7 +272,7 @@
         }
 
         .feature-card {
-            background: var(--dark);
+            background: var(--night-blue);
             padding: 2rem;
             border-radius: 12px;
             text-align: center;
@@ -256,14 +289,14 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--gold), var(--sky-blue));
             transform: scaleX(0);
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            border-color: var(--primary);
+            border-color: var(--sky-blue);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
@@ -276,7 +309,7 @@
             margin-bottom: 1.5rem;
             display: inline-block;
             padding: 1rem;
-            background: rgba(0, 220, 130, 0.1);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(135, 206, 235, 0.1));
             border-radius: 12px;
         }
 
@@ -293,10 +326,10 @@
             line-height: 1.5;
         }
 
-        /* REQUIREMENTS SECTION COMPACTO */
+        /* REQUIREMENTS SECTION */
         .requirements {
             padding: 4rem 2rem;
-            background: var(--dark);
+            background: var(--night-blue);
         }
 
         .requirements-container {
@@ -313,7 +346,7 @@
         }
 
         .step {
-            background: var(--dark-light);
+            background: var(--dark-blue);
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid var(--gray);
@@ -322,13 +355,13 @@
         }
 
         .step:hover {
-            border-color: var(--primary);
+            border-color: var(--gold);
             transform: translateY(-3px);
         }
 
         .step-number {
-            background: var(--primary);
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--night-blue);
             width: 40px;
             height: 40px;
             border-radius: 10px;
@@ -352,9 +385,9 @@
             font-size: 0.9rem;
         }
 
-        /* FOOTER MODERNO */
+        /* FOOTER */
         footer {
-            background: var(--dark-light);
+            background: var(--dark-blue);
             padding: 3rem 2rem 2rem;
             border-top: 1px solid var(--gray);
         }
@@ -366,14 +399,24 @@
         }
 
         .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo-img {
+            height: 35px;
+            width: auto;
+        }
+
+        .footer-logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--sky-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .footer-links {
@@ -392,7 +435,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--sky-blue);
         }
 
         .copyright {
@@ -402,7 +445,7 @@
             opacity: 0.7;
         }
 
-        /* RESPONSIVE MEJORADO */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-container {
                 padding: 0 1rem;
@@ -415,6 +458,10 @@
                 order: 3;
                 width: 100%;
                 justify-content: center;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
             }
 
             .hero {
@@ -466,17 +513,21 @@
             .hero h1 {
                 font-size: 1.8rem;
             }
+
+            .logo-text {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER MODERNO -->
+    <!-- HEADER CON LOGO -->
     <header>
         <div class="nav-container">
-            <div class="logo">
-                <span>⚡</span>
-                MinecraftConfigs
-            </div>
+            <a href="#inicio" class="logo-container">
+                <img src="./images/logo.png" alt="MinecraftConfigs" class="logo-img" onerror="this.style.display='none'">
+                <div class="logo-text">MinecraftConfigs</div>
+            </a>
             <nav>
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
@@ -493,7 +544,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION COMPACTO -->
+    <!-- HERO SECTION -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Configuraciones Profesionales para Minecraft</h1>
@@ -505,7 +556,7 @@
         </div>
     </section>
 
-    <!-- FEATURES SECTION MODERNO -->
+    <!-- FEATURES SECTION -->
     <section class="features">
         <div class="features-container">
             <div class="section-title">
@@ -532,7 +583,7 @@
         </div>
     </section>
 
-    <!-- REQUIREMENTS SECTION COMPACTO -->
+    <!-- REQUIREMENTS SECTION -->
     <section class="requirements">
         <div class="requirements-container">
             <div class="section-title">
@@ -554,12 +605,12 @@
         </div>
     </section>
 
-    <!-- FOOTER MODERNO -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <span>⚡</span>
-                MinecraftConfigs
+                <img src="./images/logo.png" alt="MinecraftConfigs" class="footer-logo-img" onerror="this.style.display='none'">
+                <div class="footer-logo-text">MinecraftConfigs</div>
             </div>
             <div class="footer-links">
                 <a href="#inicio">Inicio</a>
@@ -612,6 +663,21 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
+        });
+
+        // Manejo de logo si no carga
+        document.addEventListener('DOMContentLoaded', function() {
+            const logos = document.querySelectorAll('img[src*="logo.png"]');
+            logos.forEach(logo => {
+                logo.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    // Mostrar texto alternativo si el logo no carga
+                    const parent = this.parentElement;
+                    if (parent.querySelector('.logo-text') || parent.querySelector('.footer-logo-text')) {
+                        parent.style.justifyContent = 'center';
+                    }
+                });
+            });
         });
     </script>
 </body>
