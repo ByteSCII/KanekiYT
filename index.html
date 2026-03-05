@@ -3,93 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InixPost | Sistema de Gestión Inteligente</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script> <link rel="stylesheet" href="style.css">
+    <title>InixPost | POS & Inventory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </head>
 <body>
 
     <div id="splash-screen">
-        <div class="loader-content">
-            <div class="logo-loader">INIX<span>POST</span></div>
-            <div class="progress-container">
+        <div class="splash-center">
+            <div class="brand-glow">
+                <i class="ph-fill ph-package"></i>
+            </div>
+            <h1 class="splash-title">Inix<span>Post</span></h1>
+            <div class="progress-track">
                 <div id="progress-bar"></div>
             </div>
-            <p id="loader-text">Sincronizando con la nube...</p>
+            <p id="loading-text">Iniciando el entorno de trabajo...</p>
         </div>
     </div>
 
-    <div class="app-wrapper">
+    <div class="layout">
         <aside class="sidebar">
-            <div class="brand">IP</div>
-            <nav class="menu">
-                <button class="nav-btn active" onclick="showTab('registro')" title="Registro"><i class="fas fa-plus"></i></button>
-                <button class="nav-btn" onclick="showTab('inventario')" title="Inventario"><i class="fas fa-boxes"></i></button>
-                <button class="nav-btn" id="theme-toggle" title="Cambiar Tema"><i class="fas fa-moon"></i></button>
+            <div class="sidebar-header">
+                <div class="logo-icon"><i class="ph-bold ph-cube"></i></div>
+                <h2 class="logo-text">InixPost</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <p class="nav-label">MENÚ PRINCIPAL</p>
+                <button class="nav-item active" onclick="switchTab('registro')">
+                    <i class="ph ph-plus-circle"></i> Nuevo Producto
+                </button>
+                <button class="nav-item" onclick="switchTab('inventario')">
+                    <i class="ph ph-stack"></i> Mi Inventario
+                </button>
+                
+                <div class="spacer"></div>
+                
+                <p class="nav-label">SISTEMA</p>
+                <button class="nav-item" id="theme-toggle">
+                    <i class="ph ph-moon"></i> Modo Oscuro
+                </button>
             </nav>
         </aside>
 
-        <main class="main-body">
-            <section id="tab-registro" class="tab-content active">
-                <div class="header-main">
-                    <h2>Panel de Registro</h2>
-                    <p>Crea nuevos SKU en el sistema</p>
-                </div>
+        <main class="main-content">
+            <section id="tab-registro" class="view-section active">
+                <header class="section-header">
+                    <div>
+                        <h2>Añadir al Catálogo</h2>
+                        <p>Registra un nuevo producto y genera su código de barras</p>
+                    </div>
+                </header>
 
-                <div class="glass-grid">
-                    <div class="form-card">
-                        <div class="input-group">
+                <div class="split-layout">
+                    <div class="panel form-panel">
+                        <div class="input-wrapper">
                             <label>Nombre del Producto</label>
-                            <input type="text" id="nombre" placeholder="Nombre comercial...">
-                        </div>
-                        <div class="row">
-                            <div class="input-group">
-                                <label>Precio USD</label>
-                                <input type="number" id="precio" placeholder="0.00">
+                            <div class="input-box">
+                                <i class="ph ph-text-t"></i>
+                                <input type="text" id="nombre" placeholder="Ej. Sérum de Vitamina C">
                             </div>
-                            <div class="input-group">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-wrapper">
+                                <label>Precio (USD)</label>
+                                <div class="input-box">
+                                    <i class="ph ph-currency-dollar"></i>
+                                    <input type="number" id="precio" placeholder="0.00" step="0.01">
+                                </div>
+                            </div>
+                            <div class="input-wrapper">
                                 <label>Categoría</label>
-                                <select id="categoria">
-                                    <option value="Cuidado Facial">Cuidado Facial</option>
-                                    <option value="Electrónica">Electrónica</option>
-                                    <option value="Hogar">Hogar</option>
-                                </select>
+                                <div class="input-box">
+                                    <i class="ph ph-tag"></i>
+                                    <select id="categoria">
+                                        <option value="Cuidado Facial">Cuidado Facial</option>
+                                        <option value="Maquillaje">Maquillaje</option>
+                                        <option value="Cuidado Capilar">Cuidado Capilar</option>
+                                        <option value="Accesorios">Accesorios</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        
-                        <button id="upload_widget" class="btn-upload"><i class="fas fa-image"></i> Subir Imagen</button>
+
+                        <div class="upload-zone" id="upload_widget">
+                            <i class="ph ph-upload-simple"></i>
+                            <p>Haz clic para subir imagen</p>
+                            <span class="upload-hint">Soporta JPG, PNG</span>
+                        </div>
                         <input type="hidden" id="image_url">
-                        
-                        <button id="btnGuardar" class="btn-submit">Finalizar Registro</button>
+
+                        <button id="btnGuardar" class="btn-primary">
+                            <i class="ph ph-floppy-disk"></i> Guardar Producto
+                        </button>
                     </div>
 
-                    <div class="preview-card" id="sticker">
-                        <div class="sticker-content">
-                            <img id="img-preview" src="https://via.placeholder.com/150" alt="Vista previa">
-                            <h4 id="prev-name">Producto</h4>
-                            <svg id="barcode"></svg>
-                            <h3 id="prev-price">$0.00</h3>
+                    <div class="panel preview-panel">
+                        <h3>Etiqueta Generada</h3>
+                        <div class="ticket">
+                            <div class="ticket-img-container">
+                                <img id="img-preview" src="https://placehold.co/400x300/e2e8f0/64748b?text=Sin+Imagen" alt="Preview">
+                                <span class="badge" id="prev-cat">Categoría</span>
+                            </div>
+                            <div class="ticket-info">
+                                <h4 id="prev-name">Nombre del Producto</h4>
+                                <h2 id="prev-price">$0.00</h2>
+                            </div>
+                            <div class="ticket-barcode">
+                                <svg id="barcode"></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="tab-inventario" class="tab-content">
-                <div class="header-main">
-                    <h2>Inventario Global</h2>
-                    <p>Listado de productos registrados en tiempo real</p>
-                </div>
-                <div class="table-container">
-                    <table id="products-table">
+            <section id="tab-inventario" class="view-section">
+                <header class="section-header">
+                    <div>
+                        <h2>Inventario Registrado</h2>
+                        <p>Administra los productos de tu base de datos</p>
+                    </div>
+                </header>
+
+                <div class="panel table-panel">
+                    <table class="data-table">
                         <thead>
                             <tr>
-                                <th>Imagen</th>
-                                <th>Nombre</th>
+                                <th>Producto</th>
                                 <th>Categoría</th>
                                 <th>Precio</th>
-                                <th>Acciones</th>
+                                <th class="text-right">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="inventory-body">
