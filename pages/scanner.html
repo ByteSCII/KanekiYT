@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escanear Código - BarCode Manager</title>
+    <link rel="icon" type="image/webp" href="../images/favicon.webp">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-barcode"></i>
+                <span>BarCode Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="btn btn-secondary">← Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="scanner-section">
+            <h2><i class="fas fa-qrcode"></i> Escanear Código de Barras</h2>
+            
+            <div class="form-group">
+                <label for="barcodeInput">Ingresa el SKU o escanea el código:</label>
+                <input type="text" id="barcodeInput" placeholder="Escanea aquí o ingresa el SKU..." autofocus>
+            </div>
+
+            <div id="productInfo" class="product-info hidden">
+                <h3><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Información del Producto</h3>
+                <div id="scannedProductDetails"></div>
+            </div>
+
+            <div id="error-message" class="error-message"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/scanner.js"></script>
+</body>
+</html>

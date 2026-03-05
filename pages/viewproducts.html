@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Productos - BarCode Manager</title>
+    <link rel="icon" type="image/webp" href="../images/favicon.webp">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-barcode"></i>
+                <span>BarCode Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="btn btn-secondary">← Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 style="color: var(--dark-color); margin: 40px 0 30px 0; font-size: 32px;">
+            <i class="fas fa-box-open"></i> Mis Productos
+        </h1>
+        
+        <div class="products-grid" id="productsGrid">
+            <p class="loading"><i class="fas fa-spinner fa-spin"></i> Cargando productos...</p>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles del producto -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBody"></div>
+            <div class="modal-actions">
+                <button id="downloadBarcodeBtn" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Descargar Código
+                </button>
+                <button id="deleteProductBtn" class="btn btn-danger">
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/viewproducts.js"></script>
+</body>
+</html>

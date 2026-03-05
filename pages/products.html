@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto - BarCode Manager</title>
+    <link rel="icon" type="image/webp" href="../images/favicon.webp">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-barcode"></i>
+                <span>BarCode Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="dashboard.html" class="btn btn-secondary">← Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h2><i class="fas fa-plus-circle"></i> Agregar Nuevo Producto</h2>
+            
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productName">Nombre del Producto *</label>
+                    <input type="text" id="productName" name="productName" required placeholder="Ej: Laptop Dell XPS">
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Descripción *</label>
+                    <textarea id="productDescription" name="productDescription" rows="4" required placeholder="Describe el producto en detalle..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Precio ($) *</label>
+                    <input type="number" id="productPrice" name="productPrice" step="0.01" required placeholder="0.00">
+                </div>
+
+                <div class="form-group">
+                    <label for="productSKU">SKU (Código único) *</label>
+                    <input type="text" id="productSKU" name="productSKU" readonly required>
+                    <small>Este código se genera automáticamente y es único para cada producto</small>
+                    <button type="button" id="generateSKU" class="btn btn-secondary btn-small" style="margin-top: 10px;">
+                        <i class="fas fa-refresh"></i> Regenerar SKU
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImage">Imagen del Producto</label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*">
+                    <small>Sube una imagen JPG o PNG (se guardará en Cloudinary)</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-save"></i> Agregar Producto
+                </button>
+            </form>
+
+            <div id="error-message" class="error-message"></div>
+            <div id="success-message" class="success-message"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="../js/products.js"></script>
+</body>
+</html>

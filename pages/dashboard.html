@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - BarCode Manager</title>    <link rel="icon" type="image/webp" href="../images/favicon.webp">    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-barcode"></i>
+                <span>BarCode Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="btn btn-secondary">← Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div style="margin: 50px 0 40px 0; text-align: center;">
+            <h1 style="color: var(--dark-color); font-size: 36px; margin-bottom: 10px;">Panel de Control</h1>
+            <p style="color: var(--gray-600); font-size: 16px;">Bienvenido al Sistema de Gestión de Códigos de Barras</p>
+        </div>
+        
+        <div class="dashboard-menu">
+            <a href="products.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-plus-circle"></i></div>
+                <div class="menu-text">Agregar Producto</div>
+                <p>Registra nuevos productos en el sistema</p>
+            </a>
+            <a href="viewproducts.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-box-open"></i></div>
+                <div class="menu-text">Ver Productos</div>
+                <p>Gestiona y descarga códigos de barras</p>
+            </a>
+            <a href="scanner.html" class="menu-item">
+                <div class="menu-icon"><i class="fas fa-qrcode"></i></div>
+                <div class="menu-text">Escanear Código</div>
+                <p>Busca productos por código de barras</p>
+            </a>
+        </div>
+
+        <div style="margin-top: 60px; padding: 30px; background: var(--gray-100); border-radius: 12px; text-align: center;">
+            <h3 style="color: var(--dark-color); margin-bottom: 15px;">¿Cómo Funciona?</h3>
+            <ol style="text-align: left; max-width: 600px; margin: 0 auto; color: var(--gray-600); line-height: 1.8;">
+                <li><strong>Agrega tu producto</strong> con nombre, descripción, precio y SKU</li>
+                <li>El sistema <strong>genera automáticamente</strong> el código de barras</li>
+                <li><strong>Descarga</strong> el código como imagen PNG</li>
+                <li><strong>Escanea</strong> o ingresa el SKU para buscar productos</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="../js/firebase-config.js"></script>
+</body>
+</html>
