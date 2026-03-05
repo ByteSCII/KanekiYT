@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InixPost | POS & Inventory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <title>InixPost | Sistema de Inventario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
@@ -14,14 +14,9 @@
 
     <div id="splash-screen">
         <div class="splash-center">
-            <div class="brand-glow">
-                <i class="ph-fill ph-package"></i>
-            </div>
+            <i class="ph-fill ph-package"></i>
             <h1 class="splash-title">Inix<span>Post</span></h1>
-            <div class="progress-track">
-                <div id="progress-bar"></div>
-            </div>
-            <p id="loading-text">Conectando con la base de datos...</p>
+            <div class="progress-track"><div id="progress-bar"></div></div>
         </div>
     </div>
 
@@ -31,88 +26,54 @@
                 <div class="logo-icon"><i class="ph-bold ph-cube"></i></div>
                 <h2 class="logo-text">InixPost</h2>
             </div>
-            
             <nav class="nav-menu">
-                <p class="nav-label">MENÚ PRINCIPAL</p>
-                <button class="nav-item active" data-target="registro">
-                    <i class="ph ph-plus-circle"></i> Nuevo Producto
-                </button>
-                <button class="nav-item" data-target="inventario">
-                    <i class="ph ph-stack"></i> Mi Inventario
-                </button>
-                
+                <button class="nav-item active" data-target="registro"><i class="ph ph-plus-circle"></i> Registro</button>
+                <button class="nav-item" data-target="inventario"><i class="ph ph-stack"></i> Inventario</button>
                 <div class="spacer"></div>
-                
-                <p class="nav-label">SISTEMA</p>
-                <button class="nav-item" id="theme-toggle">
-                    <i class="ph ph-moon"></i> Modo Oscuro
-                </button>
+                <button class="nav-item" id="theme-toggle"><i class="ph ph-moon"></i> Modo Oscuro</button>
             </nav>
         </aside>
 
         <main class="main-content">
             <section id="tab-registro" class="view-section active">
-                <header class="section-header">
-                    <div>
-                        <h2>Añadir al Catálogo</h2>
-                        <p>Registra un nuevo producto y genera su código de barras</p>
-                    </div>
-                </header>
-
+                <div class="section-header">
+                    <h2>Nuevo Producto</h2>
+                    <p>Completa los datos para generar la etiqueta</p>
+                </div>
                 <div class="split-layout">
                     <div class="panel form-panel">
                         <div class="input-wrapper">
-                            <label>Nombre del Producto</label>
-                            <div class="input-box">
-                                <i class="ph ph-text-t"></i>
-                                <input type="text" id="nombre" placeholder="Ej. Sérum de Vitamina C">
-                            </div>
+                            <label>Nombre</label>
+                            <div class="input-box"><i class="ph ph-text-t"></i><input type="text" id="nombre" placeholder="Ej. Serum Facial"></div>
                         </div>
-
                         <div class="input-wrapper">
                             <label>Precio (USD)</label>
-                            <div class="input-box">
-                                <i class="ph ph-currency-dollar"></i>
-                                <input type="number" id="precio" placeholder="0.00" step="0.01">
-                            </div>
+                            <div class="input-box"><i class="ph ph-currency-dollar"></i><input type="number" id="precio" step="0.01"></div>
                         </div>
-
                         <div class="input-wrapper">
-                            <label>Selecciona una Categoría</label>
-                            <div class="category-chips-container" id="category-selector">
-                                <button class="chip-btn active" data-val="Cuidado Facial">Cuidado Facial</button>
-                                <button class="chip-btn" data-val="Maquillaje">Maquillaje</button>
-                                <button class="chip-btn" data-val="Cuidado Capilar">Cuidado Capilar</button>
-                                <button class="chip-btn" data-val="Accesorios">Accesorios</button>
+                            <label>Categoría</label>
+                            <div class="input-box">
+                                <i class="ph ph-tag"></i>
+                                <select id="categoria" class="modern-select">
+                                    <option value="Cuidado Facial">Cuidado Facial</option>
+                                    <option value="Maquillaje">Maquillaje</option>
+                                    <option value="Cuidado Capilar">Cuidado Capilar</option>
+                                    <option value="Accesorios">Accesorios</option>
+                                </select>
                             </div>
-                            <input type="hidden" id="categoria" value="Cuidado Facial">
                         </div>
-
                         <div class="upload-zone" id="upload_widget">
-                            <i class="ph ph-upload-simple"></i>
-                            <p>Haz clic para subir imagen</p>
-                            <span class="upload-hint">Soporta JPG, PNG</span>
+                            <i class="ph ph-image"></i><p>Subir Imagen</p>
                         </div>
                         <input type="hidden" id="image_url">
-
-                        <button id="btnGuardar" class="btn-primary">
-                            <i class="ph ph-floppy-disk"></i> Guardar Producto
-                        </button>
+                        <button id="btnGuardar" class="btn-primary"><i class="ph ph-floppy-disk"></i> Guardar</button>
                     </div>
-
                     <div class="panel preview-panel">
-                        <h3>Etiqueta Generada</h3>
                         <div class="ticket">
-                            <div class="ticket-img-container">
-                                <img id="img-preview" src="https://placehold.co/400x300/e2e8f0/64748b?text=Sin+Imagen" alt="Preview">
-                                <span class="badge" id="prev-cat">Cuidado Facial</span>
-                            </div>
+                            <img id="img-preview" src="https://placehold.co/400x300?text=InixPost">
                             <div class="ticket-info">
-                                <h4 id="prev-name">Nombre del Producto</h4>
+                                <h4 id="prev-name">Producto</h4>
                                 <h2 id="prev-price">$0.00</h2>
-                            </div>
-                            <div class="ticket-barcode">
-                                <svg id="barcode"></svg>
                             </div>
                         </div>
                     </div>
@@ -120,44 +81,33 @@
             </section>
 
             <section id="tab-inventario" class="view-section">
-                <header class="section-header">
-                    <div>
-                        <h2>Inventario Registrado</h2>
-                        <p>Administra los productos de tu base de datos</p>
-                    </div>
-                </header>
-
-                <div class="panel table-panel">
+                <div class="section-header"><h2>Mi Inventario</h2></div>
+                <div class="panel">
                     <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Producto</th>
-                                <th>Categoría</th>
-                                <th>Precio</th>
-                                <th class="text-right">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="inventory-body">
-                            </tbody>
+                        <thead><tr><th>Producto</th><th>Categoría</th><th>Precio</th><th class="text-right">Acciones</th></tr></thead>
+                        <tbody id="inventory-body"></tbody>
                     </table>
                 </div>
             </section>
         </main>
     </div>
 
-    <script type="module" src="app.js"></script>
-    <div id="toast-container"></div>
-
-<div id="barcode-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h3 id="modal-product-name">Nombre del Producto</h3>
-        <div class="modal-barcode-box">
-            <svg id="modal-barcode-svg"></svg>
+    <div id="barcode-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="printable-area">
+                <div class="label-print">
+                    <img src="./images/favicon.webp" class="print-favicon">
+                    <p class="print-meta">PRODUCTO:</p>
+                    <h3 id="print-product-name">Nombre</h3>
+                    <div class="barcode-box"><svg id="modal-barcode-svg"></svg></div>
+                </div>
+            </div>
+            <button id="btnPrint" class="btn-primary"><i class="ph ph-printer"></i> Imprimir</button>
         </div>
-        <button onclick="window.print()" class="btn-primary">Imprimir Etiqueta</button>
     </div>
-</div>
+
+    <div id="toast-container"></div>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
-
