@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCTVlsqRqwZpfBq0bnvtaDaMGDyz73S-dI",
@@ -13,53 +13,82 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const btnGuardar = document.getElementById('btnGuardar');
-const btnText = document.getElementById('btnText');
-const loader = document.getElementById('loader');
+// Simulación de barra de carga
+window.onload = () => {
+    let bar = document.getElementById('progress-bar');
+    let width = 0;
+    let interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            document.getElementById('splash-screen').style.display = 'none';
+        } else {
+            width += 10;
+            bar.style.width = width + '%';
+        }
+    }, 150);
+};
 
-btnGuardar.addEventListener('click', async () => {
+// Cloudinary Widget
+const myWidget = cloudinary.createUploadWidget({
+    cloudName: 'dgmzhcnms', 
+    uploadPreset: 'Inventario'
+}, (error, result) => {
+    if (!error && result && result.event === "success") { 
+        document.getElementById('image_url').value = result.info.secure_url;
+        document.getElementById('img-preview').src = result.info.secure_url;
+    }
+});
+document.getElementById("upload_widget").addEventListener("click", () => myWidget.open(), false);
+
+// Cambio de Tema
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const target = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', target);
+    themeBtn.innerHTML = target === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+});
+
+// Guardar Producto
+document.getElementById('btnGuardar').addEventListener('click', async () => {
     const nombre = document.getElementById('nombre').value;
     const precio = document.getElementById('precio').value;
     const categoria = document.getElementById('categoria').value;
+    const imgUrl = document.getElementById('image_url').value;
 
-    if(!nombre || !precio) return alert("Completa los campos, Jean.");
+    if(!nombre || !precio) return alert("Faltan datos");
 
-    // Estado de carga
-    btnText.style.display = 'none';
-    loader.style.display = 'inline-block';
-    btnGuardar.disabled = true;
+    const docRef = await addDoc(collection(db, "productos"), {
+        nombre, precio: parseFloat(precio), categoria, imgUrl, timestamp: new Date()
+    });
 
-    try {
-        const docRef = await addDoc(collection(db, "productos"), {
-            nombre,
-            precio: parseFloat(precio),
-            categoria,
-            timestamp: new Date()
-        });
-
-        // Actualizar UI
-        document.getElementById('label-name').innerText = nombre;
-        document.getElementById('label-cat').innerText = categoria;
-        document.getElementById('label-price').innerText = `$${precio}`;
-
-        JsBarcode("#barcode", docRef.id, {
-            format: "code128",
-            width: 2.5,
-            height: 50,
-            displayValue: true,
-            font: "Plus Jakarta Sans"
-        });
-
-        // Limpiar campos
-        document.getElementById('nombre').value = "";
-        document.getElementById('precio').value = "";
-
-    } catch (e) {
-        console.error(e);
-        alert("Error de conexión con Firebase");
-    } finally {
-        btnText.style.display = 'inline-block';
-        loader.style.display = 'none';
-        btnGuardar.disabled = false;
-    }
+    JsBarcode("#barcode", docRef.id, { format: "code128", width: 2, height: 40 });
+    alert("InixPost: Producto Guardado");
 });
+
+// Cargar Inventario en Tiempo Real
+onSnapshot(collection(db, "productos"), (snapshot) => {
+    const tableBody = document.getElementById('inventory-body');
+    tableBody.innerHTML = '';
+    snapshot.forEach((doc) => {
+        const p = doc.data();
+        tableBody.innerHTML += `
+            <tr>
+                <td><img src="${p.imgUrl || 'https://via.placeholder.com/50'}" class="img-table"></td>
+                <td>${p.nombre}</td>
+                <td>${p.categoria}</td>
+                <td>$${p.precio}</td>
+                <td>
+                    <button class="nav-btn" onclick="eliminar('${doc.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+        `;
+    });
+});
+
+// Navegación de Tabs
+window.showTab = (tabId) => {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+};
