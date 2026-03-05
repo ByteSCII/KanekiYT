@@ -21,7 +21,7 @@
             <div class="progress-track">
                 <div id="progress-bar"></div>
             </div>
-            <p id="loading-text">Iniciando el entorno de trabajo...</p>
+            <p id="loading-text">Conectando con la base de datos...</p>
         </div>
     </div>
 
@@ -34,10 +34,10 @@
             
             <nav class="nav-menu">
                 <p class="nav-label">MENÚ PRINCIPAL</p>
-                <button class="nav-item active" onclick="switchTab('registro')">
+                <button class="nav-item active" data-target="registro">
                     <i class="ph ph-plus-circle"></i> Nuevo Producto
                 </button>
-                <button class="nav-item" onclick="switchTab('inventario')">
+                <button class="nav-item" data-target="inventario">
                     <i class="ph ph-stack"></i> Mi Inventario
                 </button>
                 
@@ -69,26 +69,23 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
-                            <div class="input-wrapper">
-                                <label>Precio (USD)</label>
-                                <div class="input-box">
-                                    <i class="ph ph-currency-dollar"></i>
-                                    <input type="number" id="precio" placeholder="0.00" step="0.01">
-                                </div>
+                        <div class="input-wrapper">
+                            <label>Precio (USD)</label>
+                            <div class="input-box">
+                                <i class="ph ph-currency-dollar"></i>
+                                <input type="number" id="precio" placeholder="0.00" step="0.01">
                             </div>
-                            <div class="input-wrapper">
-                                <label>Categoría</label>
-                                <div class="input-box">
-                                    <i class="ph ph-tag"></i>
-                                    <select id="categoria">
-                                        <option value="Cuidado Facial">Cuidado Facial</option>
-                                        <option value="Maquillaje">Maquillaje</option>
-                                        <option value="Cuidado Capilar">Cuidado Capilar</option>
-                                        <option value="Accesorios">Accesorios</option>
-                                    </select>
-                                </div>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label>Selecciona una Categoría</label>
+                            <div class="category-chips-container" id="category-selector">
+                                <button class="chip-btn active" data-val="Cuidado Facial">Cuidado Facial</button>
+                                <button class="chip-btn" data-val="Maquillaje">Maquillaje</button>
+                                <button class="chip-btn" data-val="Cuidado Capilar">Cuidado Capilar</button>
+                                <button class="chip-btn" data-val="Accesorios">Accesorios</button>
                             </div>
+                            <input type="hidden" id="categoria" value="Cuidado Facial">
                         </div>
 
                         <div class="upload-zone" id="upload_widget">
@@ -108,7 +105,7 @@
                         <div class="ticket">
                             <div class="ticket-img-container">
                                 <img id="img-preview" src="https://placehold.co/400x300/e2e8f0/64748b?text=Sin+Imagen" alt="Preview">
-                                <span class="badge" id="prev-cat">Categoría</span>
+                                <span class="badge" id="prev-cat">Cuidado Facial</span>
                             </div>
                             <div class="ticket-info">
                                 <h4 id="prev-name">Nombre del Producto</h4>
