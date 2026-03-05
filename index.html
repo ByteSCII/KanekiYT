@@ -146,5 +146,18 @@
     </div>
 
     <script type="module" src="app.js"></script>
+    <div id="toast-container"></div>
+
+<div id="barcode-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3 id="modal-product-name">Nombre del Producto</h3>
+        <div class="modal-barcode-box">
+            <svg id="modal-barcode-svg"></svg>
+        </div>
+        <button onclick="window.print()" class="btn-primary">Imprimir Etiqueta</button>
+    </div>
+</div>
 </body>
 </html>
+
