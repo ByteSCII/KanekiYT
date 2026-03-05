@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Códigos de Barras</title>
+    <link rel="icon" type="image/webp" href="./images/favicon.webp">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-home">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="./images/favicon.webp" alt="Logo">
+                <span>BarCode Manager</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Características</a>
+                <a href="#how-it-works" class="nav-link">Cómo Funciona</a>
+                <a href="pages/dashboard.html" class="btn btn-primary">Ir al Sistema</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Sistema Profesional de Códigos de Barras</h1>
+            <p class="hero-subtitle">Gestiona tus productos, genera códigos de barras automáticos y escanea con facilidad. La solución completa para tu inventario digital.</p>
+
+            <div class="hero-features">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h3>Gestiona Productos</h3>
+                    <p>Registra y organiza todos tus productos de forma sencilla con interfaz intuitiva</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    <h3>Códigos Automáticos</h3>
+                    <p>Genera códigos de barras profesionales CODE128 al instante basados en SKU</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Escanea Fácil</h3>
+                    <p>Escanea códigos y accede a la información completa del producto en segundos</p>
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="pages/dashboard.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Comenzar Ahora
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary btn-large">
+                    <i class="fas fa-play"></i> Ver Demo
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card">
+                <i class="fas fa-barcode"></i>
+                <span>Código Generado</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Productos Gestionados</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Empresas Confían</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Acceso Web</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Disponibilidad</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>¿Cómo Funciona?</h2>
+                <p>Proceso simple en 3 pasos para gestionar tus productos</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3>Registra Productos</h3>
+                    <p>Agrega nombre, descripción, precio y SKU de tus productos</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3>Genera Códigos</h3>
+                    <p>El sistema crea automáticamente códigos de barras CODE128</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>Escanea y Gestiona</h3>
+                    <p>Escanea códigos para acceder rápidamente a la información</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Características Avanzadas</h2>
+                <p>Todo lo que necesitas para una gestión eficiente de productos</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>Almacenamiento en la Nube</h3>
+                        <p>Tus datos están seguros en Firebase Firestore con respaldo automático</p>
+                    </div>
+                </div>
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>Descarga de Códigos</h3>
+                        <p>Descarga códigos de barras en formato PNG para impresión</p>
+                    </div>
+                </div>
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>100% Responsivo</h3>
+                        <p>Funciona perfectamente en desktop, tablet y móvil</p>
+                    </div>
+                </div>
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>Seguro y Privado</h3>
+                        <p>Autenticación segura y control de acceso a tus datos</p>
+                    </div>
+                </div>
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>Gestión de Imágenes</h3>
+                        <p>Sube y gestiona imágenes de productos con Cloudinary</p>
+                    </div>
+                </div>
+                <div class="feature-detail animate-on-scroll">
+                    <div class="feature-detail-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="feature-detail-content">
+                        <h3>Búsqueda Rápida</h3>
+                        <p>Encuentra productos instantáneamente por código o nombre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para revolucionar tu gestión de productos?</h2>
+                <p>Únete a cientos de empresas que ya confían en BarCode Manager</p>
+                <a href="pages/dashboard.html" class="btn btn-primary btn-xl">
+                    <i class="fas fa-arrow-right"></i> Comenzar Gratis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-barcode"></i>
+                    <span>BarCode Manager</span>
+                    <p>Sistema profesional de gestión de códigos de barras</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Producto</h4>
+                        <a href="#features">Características</a>
+                        <a href="#how-it-works">Cómo Funciona</a>
+                        <a href="pages/dashboard.html">Dashboard</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Soporte</h4>
+                        <a href="#">Documentación</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contacto</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Empresa</h4>
+                        <a href="#">Sobre Nosotros</a>
+                        <a href="#">Política de Privacidad</a>
+                        <a href="#">Términos de Servicio</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 BarCode Manager. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
